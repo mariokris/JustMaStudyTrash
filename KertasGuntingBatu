@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mario</title>
+</head>
+<style type="text/css">
+	textarea{
+		position: absolute;
+		left:100px;
+		text-align: center;
+		border: 3px solid black;
+		resize: none;
+		width: 100px;
+		height:12px;
+	}
+	.keseluruhan{
+		position: absolute;
+		top: 200px;
+		left:550px;
+	}
+	button{
+		border-radius: 20px;
+		height: 40px;
+		width: 70px;
+		position: relative;
+		top: 10px;
+		outline: none;
+		background-color: lightblue;
+		border-style: solid;
+
+	}
+	button:hover{
+		transform: translate(1px,1.5px);
+	}
+</style>
+<body>
+	<h1 align="center" style="color: blue">BELAJAR MARIO</h1>
+	<div class="keseluruhan">
+	Masukkan Pilihan:
+	<select id="pilihan_suit">
+		<option>BATU</option>
+		<option>KERTAS</option>
+		<option>GUNTING</option>
+	</select>
+	<br>
+	<button>MULAI</button>
+	<div id="hide" style="display: none">
+		<br>
+		Pilihan Anda:
+		<textarea id="txt_1"></textarea><br><br>
+		Pilihan BOT:
+		<textarea id="txt_2"></textarea><br><br>
+		HASILNYA:
+		<textarea id="txt_3"></textarea>
+	</div>
+</div>
+	<script type="text/javascript" src="jquery-3.3.1.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('button').click(function(){
+				$('#hide').fadeIn(3000);
+				
+				//Menampilkan Pilihan ke Textarea User
+				var mylist = document.getElementById("pilihan_suit");
+				var x = $('#pilihan_suit')[0].selectedIndex;
+				$('#txt_1').val(mylist.options[x].text);
+				
+				//SET UNTUK PILIHAN BOT
+				var math = Math.random()*10;
+				if(math <= 3){
+					math = "BATU"
+				}else if(math>3 && math <7){
+					math = "KERTAS"
+				}else{
+					math = "GUNTING"
+				}
+				$('#txt_2').val(math);
+
+				//SET UNTUK RESULT
+				if (x==0){
+					if (math == "BATU"){
+						$('#txt_3').val("SERI")
+					}else if(math == "KERTAS"){
+						$('#txt_3').val("KALAH")
+					}else{
+						$('#txt_3').val("MENANG")
+					}
+				}else if(x==1){
+					if (math == "BATU"){
+						$('#txt_3').val("MENANG")
+					}else if(math == "KERTAS"){
+						$('#txt_3').val("SERI")
+					}else{
+						$('#txt_3').val("KALAH")
+					}
+				}else{
+					if (math == "BATU"){
+						$('#txt_3').val("KALAH")
+					}else if(math == "KERTAS"){
+						$('#txt_3').val("MENANG")
+					}else{
+						$('#txt_3').val("SERI")
+					}
+				}
+
+			})
+		})
+	</script>
+
+</body>
+</html>
